@@ -26,8 +26,15 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+elements_in_centroid = zeros(K, 1);
+elements_in_centroid_sum = zeros(K, n);
+for i= 1:m,
+  cur_centroid = idx(i);
+  elements_in_centroid(cur_centroid) += 1;
+  elements_in_centroid_sum(cur_centroid, :) += X(i, :);
+end;
 
-
+centroids = elements_in_centroid_sum./elements_in_centroid;
 
 
 
